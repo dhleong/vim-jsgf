@@ -22,7 +22,8 @@ syn match jsgfGroup '\v\)'
 syn match jsgfOptional '\['
 syn match jsgfOptional '\]'
 
-syn region jsgfRule matchgroup=jsgfRuleMatchGroup start="\v\<" end="\v\>" contains=@Spell
+syn region jsgfRule matchgroup=jsgfRuleMatchGroup start="\v\<" end="\v\>" contains=@Spell,jsgfBrokenRule
+syn match jsgfBrokenRule "\v\<[^>]*[ ]+[^>]*\>"
 
 syn region jsgfTag matchgroup=jsgfTagMatchGroup start="\v\{" end="\}" contains=@Spell
 
@@ -49,6 +50,7 @@ hi link jsgfCommentMatchGroup Comment
 
 hi link jsgfRule Identifier
 hi link jsgfRuleMatchGroup String
+hi link jsgfBrokenRule Error
 
 hi link jsgfGroup Repeat
 hi link jsgfOptional Exception
