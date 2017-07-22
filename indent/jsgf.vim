@@ -26,7 +26,7 @@ function! GetJSGFIndent()
 
     let search = ''
     for candidate in candidates
-        let match = '\v^([[:blank:]]|(public)* \<[^>]+\>[[:blank:]])*\' . candidate
+        let match = '\v^([[:blank:]]|(public[[:blank:]]+)*\<[^>]+\>[[:blank:]])*\' . candidate
         if prev =~# match
             let search = candidate
             break
