@@ -20,13 +20,11 @@ function! GetJSGFIndent()
     let prevNum = prevnonblank(v:lnum - 1)
     let prev = getline(prevNum)
 
-    echom prev
-
-    let candidates = ['=', '|', '(', '[']
+    let candidates = ['|', '(', '[', '=']
 
     let search = ''
     for candidate in candidates
-        let match = '\v^([[:blank:]]|(public[[:blank:]]+)*\<[^>]+\>[[:blank:]])*\' . candidate
+        let match = '\v\' . candidate
         if prev =~# match
             let search = candidate
             break
