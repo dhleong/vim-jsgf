@@ -33,7 +33,7 @@ function! GetJSGFIndent()
         endif
     endfor
 
-    if search == ''
+    if search == '' || stridx(prev, ';') != -1
         return indent(prevNum)
     endif
 
