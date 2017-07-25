@@ -16,16 +16,14 @@ let b:current_syntax = "jsgf"
 syn keyword jsgfInclude grammar import
 syn keyword jsgfKeyword public
 
-syn match jsgfGroup '\v\('
-syn match jsgfGroup '\v\)'
-
-syn match jsgfOptional '\['
-syn match jsgfOptional '\]'
+syn match jsgfGroup '\v[()]'
+syn match jsgfOptional '[\[\]]'
 
 syn region jsgfRule matchgroup=jsgfRuleMatchGroup start="\v\<" end="\v\>" contains=@Spell,jsgfBrokenRule
 syn match jsgfBrokenRule "\v\<[^>]*[ ]+[^>]*\>"
 
-syn region jsgfTag matchgroup=jsgfTagMatchGroup start="\v\{" end="\}" contains=@Spell
+syn match jsgfSpecialChar "\v\\\}" contained
+syn region jsgfTag matchgroup=jsgfTagMatchGroup start="\v\{" skip="\\\}" end="\}" contains=@Spell,jsgfSpecialChar
 
 syn region jsgfWeight matchgroup=jsgfWeightMatchGroup start="\v\/" end="\/" contains=@Spell
 
@@ -55,7 +53,8 @@ hi link jsgfBrokenRule Error
 hi link jsgfGroup Repeat
 hi link jsgfOptional Exception
 
-hi link jsgfTag Constant
+hi link jsgfSpecialChar SpecialChar
+hi link jsgfTag String
 hi link jsgfTagMatchGroup Statement
 
 hi link jsgfWeight Constant
